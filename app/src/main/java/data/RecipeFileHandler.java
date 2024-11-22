@@ -1,5 +1,9 @@
 package data;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -16,17 +20,24 @@ public class RecipeFileHandler {
 
     /**
      * 設問1: 一覧表示機能
-     * recipes.txtからレシピデータを読み込み、それをリスト形式で返します。 <br> 
+     * recipes.txtからレシピデータを読み込み、それをリスト形式で返します。 <br>
      * IOExceptionが発生したときは<i>Error reading file: 例外のメッセージ</i>とコンソールに表示します。
      *
      * @return レシピデータ
      */
     public ArrayList<String> readRecipes() {
-        // try {
-
-        // } catch (IOException e) {
-        //     System.out.println("Error reading file:" + e.getMessage());
-        // }
+        try (BufferedReader reader = new BufferedReader(new FileReader(this.filePath))) {
+            String line;
+            ArrayList<String> pairRecipes = new ArrayList<>();
+        
+            while ((line = reader.readLine()) != null) {
+                pairRecipes.add(line);
+            }
+        
+            return pairRecipes;
+        } catch (IOException e) {
+            System.out.println("Error reading file:" + e.getMessage());
+        }
         return null;
     }
 
@@ -40,10 +51,11 @@ public class RecipeFileHandler {
      */
      // 
     public void addRecipe(String recipeName, String ingredients) {
-        // try {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(this.filePath, true))) {
+            
 
-        // } catch (IOException e) {
+        } catch (IOException e) {
 
-        // }
+        }
     }
 }
