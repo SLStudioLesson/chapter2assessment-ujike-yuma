@@ -49,11 +49,13 @@ public class RecipeFileHandler {
      * @param recipeName レシピ名
      * @param ingredients 材料名
      */
-     // 
+     //
     public void addRecipe(String recipeName, String ingredients) {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(this.filePath, true))) {
-            
-
+            // 書き込む一文をtextに代入
+            String text = "\n" + recipeName + "," + ingredients.replace(",", ", ");
+            // filePathにtextを書き込み
+            writer.write(text);
         } catch (IOException e) {
 
         }

@@ -41,6 +41,7 @@ public class RecipeUI {
                         break;
                     case "2":
                         // 設問2: 新規登録機能
+                        addNewRecipe();
                         break;
                     case "3":
                         // 設問3: 検索機能
@@ -91,7 +92,17 @@ public class RecipeUI {
      * @throws java.io.IOException 入出力が受け付けられない
      */
     private void addNewRecipe() throws IOException {
-        
+        // recipeNameを入力してもらう
+        System.out.print("Enter recipe name: ");
+        String recipeName = reader.readLine();
+
+        // ingredientを入力してもらう
+        System.out.print("Enter main ingredients (comma separated): ");
+        String ingredients = reader.readLine();
+
+        // addRecipe();に引数を渡して呼び出す
+        fileHandler.addRecipe(recipeName, ingredients);
+        System.out.println("Recipe added successfully.");
     }
 
     /**
